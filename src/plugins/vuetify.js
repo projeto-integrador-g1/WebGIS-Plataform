@@ -1,24 +1,25 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
+import i18n from '@/i18n'
+import '@/sass/overrides.sass'
 
 Vue.use(Vuetify)
 
+const theme = {
+  primary: '#4CAF50',
+  secondary: '#9C27b0',
+  accent: '#9C27b0',
+  info: '#00CAE3',
+}
+
 export default new Vuetify({
+  lang: {
+    t: (key, ...params) => i18n.t(key, params),
+  },
   theme: {
     themes: {
-      light: {
-        primary: '#4caf50',
-        secondary: '#4caf50',
-        tertiary: '#495057',
-        accent: '#82B1FF',
-        error: '#f55a4e',
-        info: '#00d3ee',
-        success: '#5cb860',
-        warning: '#ffa21a'
-      }
-    }
+      dark: theme,
+      light: theme,
+    },
   },
-  icons: {
-    iconfont: 'mdi'
-  }
 })
