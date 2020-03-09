@@ -1,26 +1,52 @@
 <template>
-  <MglMap :accessToken="accessToken" :mapStyle="mapStyle" />
+  <div id="app">
+    <mapbox
+      access-token="pk.eyJ1IjoibHVjaWFuby1zY3J1bSIsImEiOiJjazdkOGJ6YTQxY3Z4M2Vxcmd4NTBhNjBmIn0.vRDaTxND4t-C_b5XB4JLmA"
+      :map-options="{
+        style: 'mapbox://styles/mapbox/satellite-v9',
+        center: [-96, 37.8],
+        zoom: 3,
+      }"
+      :geolocate-control="{
+        show: true,
+        position: 'top-left',
+      }"
+      :scale-control="{
+        show: true,
+        position: 'top-left',
+      }"
+      :fullscreen-control="{
+        show: true,
+        position: 'top-left',
+      }"
+      @map-init="initialized"
+    />
+  </div>
 </template>
 
 <script>
-import Mapbox from "mapbox-gl";
-import { MglMap } from "vue-mapbox";
+import Mapbox from "mapbox-gl-vue";
 
 export default {
-  components: {
-    MglMap
-  },
-  data() {
-    return {
-      accessToken:
-        "pk.eyJ1IjoibHVjaWFuby1zY3J1bSIsImEiOiJjazdkOGJ6YTQxY3Z4M2Vxcmd4NTBhNjBmIn0.vRDaTxND4t-C_b5XB4JLmA", // your access token. Needed if you using Mapbox maps
-      mapStyle: "mapbox://styles/mapbox/satellite-v9" // your map style
-    };
-  },
-
-  created() {
-    // We need to set mapbox-gl library here in order to use it in template
-    this.mapbox = Mapbox;
+  components: { Mapbox },
+  methods: {
+    initialized(map) {
+      const Draw = new MapboxDraw({
+        displayControlsDefault: false,
+        controls: {
+          polygon: true,
+          trash: true
+        }
+      });
+      map.addControl(Draw);
+    }
   }
 };
 </script>
+
+<style>
+#map {
+  width: 100%;
+  height: 500px;
+}
+</style>
