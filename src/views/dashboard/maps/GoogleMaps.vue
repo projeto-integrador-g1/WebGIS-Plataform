@@ -39,6 +39,15 @@ export default {
         }
       });
       map.addControl(Draw);
+
+      map.on('draw.create', function (e) {
+        //console.log(e.features);
+        console.log('Novo Polígono');
+        for(var i = 0; i < e.features[0].geometry.coordinates[0].length - 1; i++){
+          // A ultima coordenada e igual a primeira.
+          console.log(i + ' Coordenada : ' + e.features[0].geometry.coordinates[0][i]);
+        }
+      });
     }
   }
 };
