@@ -30,8 +30,9 @@
           color="white"
           contain
         >
+          <!--https://demos.creative-tim.com/vuetify-material-dashboard/favicon.ico-->
           <v-img
-            src="https://demos.creative-tim.com/vuetify-material-dashboard/favicon.ico"
+            src="https://media-exp1.licdn.com/dms/image/C560BAQEvWg3rCJNK8w/company-logo_200_200/0?e=2159024400&v=beta&t=iUaczIUx5iKmmXUghyiPiM002qUzlpQXebLqxvgqzO0"
             max-height="30"
           />
         </v-list-item-avatar>
@@ -76,7 +77,7 @@
       <div />
     </v-list>
 
-    <template v-slot:append>
+    <!--<template v-slot:append>
       <base-item
         :item="{
           title: $t('upgrade'),
@@ -84,7 +85,7 @@
           to: '/upgrade',
         }"
       />
-    </template>
+    </template>-->
   </v-navigation-drawer>
 </template>
 
@@ -107,40 +108,40 @@
     data: () => ({
       items: [
         {
-          icon: 'mdi-view-dashboard',
-          title: 'dashboard',
+          icon: 'mdi-home',
+          title: 'Home',
           to: '/',
         },
+        // {
+        //   icon: 'mdi-account',
+        //   title: 'user',
+        //   to: '/pages/user',
+        // },
+        // {
+        //   title: 'rtables',
+        //   icon: 'mdi-clipboard-outline',
+        //   to: '/tables/regular-tables',
+        // },
+        // {
+        //   title: 'typography',
+        //   icon: 'mdi-format-font',
+        //   to: '/components/typography',
+        // },
+        // {
+        //   title: 'icons',
+        //   icon: 'mdi-chart-bubble',
+        //   to: '/components/icons',
+        // },
         {
-          icon: 'mdi-account',
-          title: 'user',
-          to: '/pages/user',
-        },
-        {
-          title: 'rtables',
-          icon: 'mdi-clipboard-outline',
-          to: '/tables/regular-tables',
-        },
-        {
-          title: 'typography',
-          icon: 'mdi-format-font',
-          to: '/components/typography',
-        },
-        {
-          title: 'icons',
-          icon: 'mdi-chart-bubble',
-          to: '/components/icons',
-        },
-        {
-          title: 'google',
+          title: 'Mapa',
           icon: 'mdi-map-marker',
-          to: '/maps/google-maps',
+          to: '/mapa',
         },
-        {
-          title: 'notifications',
-          icon: 'mdi-bell',
-          to: '/components/notifications',
-        },
+        // {
+        //   title: 'notifications',
+        //   icon: 'mdi-bell',
+        //   to: '/components/notifications',
+        // },
       ],
     }),
 
@@ -160,7 +161,7 @@
       profile () {
         return {
           avatar: true,
-          title: this.$t('avatar'),
+          title: 'Visiona',
         }
       },
     },

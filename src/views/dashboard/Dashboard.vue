@@ -1,4 +1,7 @@
 <template>
+  <div />
+</template>
+<!--<template>
   <v-container
     id="dashboard"
     fluid
@@ -598,4 +601,4 @@
       },
     },
   }
-</script>
+</script>-->

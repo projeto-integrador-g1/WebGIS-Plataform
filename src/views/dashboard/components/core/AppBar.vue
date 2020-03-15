@@ -28,7 +28,7 @@
       v-text="$route.name"
     />
 
-    <v-spacer />
+    <!--<v-spacer />
 
     <v-text-field
       :label="$t('search')"
@@ -60,7 +60,7 @@
       to="/"
     >
       <v-icon>mdi-view-dashboard</v-icon>
-    </v-btn>
+    </v-btn> -->
 
     <v-menu
       bottom
@@ -69,7 +69,7 @@
       origin="top right"
       transition="scale-transition"
     >
-      <template v-slot:activator="{ attrs, on }">
+      <!--<template v-slot:activator="{ attrs, on }">
         <v-btn
           class="ml-2"
           min-width="0"
@@ -89,7 +89,7 @@
             <v-icon>mdi-bell</v-icon>
           </v-badge>
         </v-btn>
-      </template>
+      </template>-->
 
       <v-list
         :tile="false"
@@ -106,14 +106,14 @@
       </v-list>
     </v-menu>
 
-    <v-btn
+    <!--<v-btn
       class="ml-2"
       min-width="0"
       text
       to="/pages/user"
     >
       <v-icon>mdi-account</v-icon>
-    </v-btn>
+    </v-btn>-->
   </v-app-bar>
 </template>
 
