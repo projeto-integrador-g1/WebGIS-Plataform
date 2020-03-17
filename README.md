@@ -1,6 +1,6 @@
- **Project Visiona**
+ **PROJECT VISIONA**
  
- **team members**
+ **Team Members**
  
 * [ ]  Bruno Ferro
 * [ ]  Fabio Rodrigues
@@ -8,6 +8,9 @@
 * [ ]  Luciano Cabral
 * [ ]  Luis Belo
 * [ ]  Matheus Froes
+
+
+
 
  
 
