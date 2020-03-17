@@ -1,6 +1,6 @@
 **PROJECT VISIONA**
 
-Team Members
+**Team Members**
 
 * [ ] Bruno Ferro
 * [ ] Fabio Rodrigues
