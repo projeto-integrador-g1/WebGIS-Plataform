@@ -9,10 +9,30 @@
 * [ ]  Luis Belo
 * [ ]  Matheus Froes
 
+## What is this?
+This is a project that aims to create an analysis of satellite image by means of AI, making it able to identify plots of land.
 
+## How it's going to work?
+We are currently using and studiyng about techonologies that will be able to reach our objective;
+## Currently there are a few defined tools:
 
+**[GOOGLE EARTH ENGINE](earthengine.google.com)**
+To download and work with satellite images.
 
- 
+**[PostGIS](https://postgis.net/)**
+The database add that support geographic objects allowing location queries to be run in SQL.
+
+**[Keras](https://keras.io/) [Tensor Flow](https://www.tensorflow.org/)**
+Neural network that will be the core of the project written in Python and capable of running on top of TensorFlow
+
+**[WebGIS](http://www.webgis.com/) with [VueJS](https://vuejs.org/)**
+Will be used to create an platform.
+
+**Google Maps or OpenStreetMap**
+With [Mapbox](https://www.mapbox.com/) or [Ploty](https://plot.ly/)
+
+**[Flask](https://palletsprojects.com/p/flask/) and [GeoPandas](https://geopandas.org/)**
+To develop back end tools such as CRUD.
 
 # [Vuetify Material Dashboard](https://www.creative-tim.com/vuetify-material-dashboard) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Vuetify%20Material%20Dashboard%20-%20Admin%20Template%20for%20Vue.js%20https%3A//www.creative-tim.com/product/vuetify-material-dashboard%20%23vuejs%20%23vuex%20%23dashboard%20%23vuetify%20%23vuetify%20material%20%20%40creativetim)
 
