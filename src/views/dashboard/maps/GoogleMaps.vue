@@ -43,10 +43,17 @@ export default {
       map.on('draw.create', function (e) {
         //console.log(e.features);
         console.log('Novo Polígono');
-        for(var i = 0; i < e.features[0].geometry.coordinates[0].length - 1; i++){
+        var coordinates_ = '';
+        for(var i = 0; i < e.features[0].geometry.coordinates[0].length; i++){
           // A ultima coordenada e igual a primeira.
-          console.log(i + ' Coordenada : ' + e.features[0].geometry.coordinates[0][i]);
+          if(i === 0){
+            coordinates_ += e.features[0].geometry.coordinates[0][i][1] + ' ' + e.features[0].geometry.coordinates[0][i][0];
+          } else{
+            coordinates_ += ', ' + e.features[0].geometry.coordinates[0][i][1] + ' ' + e.features[0].geometry.coordinates[0][i][0];
+          }
+          //console.log(i + ' Coordenada : ' + e.features[0].geometry.coordinates[0][i]);
         }
+        console.log(coordinates_);
       });
     }
   }
