@@ -1,5 +1,6 @@
 <template>
   <div>
+  <material-card title="Table on Plain Background">
     <div class="mapouter">
       <div class="gmap_canvas">
         <iframe
@@ -14,6 +15,7 @@
         />
       </div>
     </div>
+  </material-card>
   </div>
 </template>
 
