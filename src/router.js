@@ -19,7 +19,12 @@ export default new Router({
         {
           name: "Mapa",
           path: "/mapa",
-          component: () => import("@/views/dashboard/maps/GoogleMaps")
+          component: () => import("@/views/maps/MapBoxComponent")
+        },
+        {
+          name: "Catálogo de imagens",
+          path: "/catalogo-imagens",
+          component: () => import("@/views/imagesView/imagesView")
         }
       ]
     }
