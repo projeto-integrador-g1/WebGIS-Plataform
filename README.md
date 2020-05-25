@@ -37,14 +37,15 @@ or
 
 ## Built With
 
-- [Vue.js](https://vuejs.org/)
-- [Vuetify](https://vuetifyjs.com/en/)
-- [Mapbox](https://www.mapbox.com/)
-- [Keras](https://keras.io/)
-- [Tensor Flow](https://www.tensorflow.org/)
-- [Flask](https://flask.palletsprojects.com/en/1.1.x/)
-- [PostGIS](https://postgis.net/)
-- [Imgur API](https://apidocs.imgur.com/?version=latest)
+- [Vue.js](https://vuejs.org/) WebGIS Component
+- [Vuetify](https://vuetifyjs.com/en/) Design/Style
+- [Mapbox](https://www.mapbox.com/) Map Component
+- [Keras](https://keras.io/) Neural Network
+- [Tensor Flow](https://www.tensorflow.org/) IA
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) Back-End REST
+- [PostgreSQL](https://www.postgresql.org/) Database
+- [PostGIS](https://postgis.net/) Spatial database extender for PostgreSQL 
+- [Imgur API](https://apidocs.imgur.com/?version=latest) Upload/Download images
 
 
 ## Authors
