@@ -1,15 +1,14 @@
 import axios from "axios";
 
-const apiService = {
+export const apiService = {
   async sendCoordinates(data) {
     const response = await axios({
-      url: "",
+      url: "http://127.0.0.1:5000/api/geo/",
       method: "POST",
       data: data
     });
-
+    console.log(response.data);
     return response.data;
   }
 };
 
-export default apiService;
