@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { apiService } from '@/services'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
-
+    async sendCoordinates({ commit }, payload) {
+      debugger;
+      return apiService.sendCoordinates(payload);
+    }
   },
 })
