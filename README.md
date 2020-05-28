@@ -43,8 +43,7 @@ or
 - [Keras](https://keras.io/) Neural Network
 - [Tensor Flow](https://www.tensorflow.org/) IA
 - [Flask](https://flask.palletsprojects.com/en/1.1.x/) Back-End REST
-- [PostgreSQL](https://www.postgresql.org/) Database
-- [PostGIS](https://postgis.net/) Spatial database extender for PostgreSQL 
+- [MongoDB](https://www.mongodb.com/) Database
 - [Imgur API](https://apidocs.imgur.com/?version=latest) Upload/Download images
 
 
