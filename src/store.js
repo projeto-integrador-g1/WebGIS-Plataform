@@ -20,7 +20,7 @@ export default new Vuex.Store({
   },
   actions: {
     async sendCoordinates({ commit }, payload) {
-      debugger;
+
       return apiService.sendCoordinates(payload);
     }
   },
