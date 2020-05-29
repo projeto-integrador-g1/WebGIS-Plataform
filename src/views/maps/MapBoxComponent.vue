@@ -29,8 +29,18 @@ import Mapbox from "mapbox-gl-vue";
 
 export default {
   components: { Mapbox },
+  data() {
+    return{
+      coordinates: {
+        user_id: "5ecf7abcd91aa079f8b551f4",
+        geo_coord: []
+      },
+    }
+  },
   methods: {
     initialized(map) {
+      var vm = this;
+      
       const Draw = new MapboxDraw({
         displayControlsDefault: false,
         controls: {
@@ -43,18 +53,21 @@ export default {
       map.on('draw.create', function (e) {
         //console.log(e.features);
         console.log('Novo Polígono');
-        var coordinates_ = '';
+
         for(var i = 0; i < e.features[0].geometry.coordinates[0].length; i++){
           // A ultima coordenada e igual a primeira.
-          if(i === 0){
-            coordinates_ += e.features[0].geometry.coordinates[0][i][1] + ' ' + e.features[0].geometry.coordinates[0][i][0];
-          } else{
-            coordinates_ += ', ' + e.features[0].geometry.coordinates[0][i][1] + ' ' + e.features[0].geometry.coordinates[0][i][0];
-          }
-          //console.log(i + ' Coordenada : ' + e.features[0].geometry.coordinates[0][i]);
+          var coordenada = [];
+          coordenada.push(e.features[0].geometry.coordinates[0][i][1]); // latitude
+          coordenada.push(e.features[0].geometry.coordinates[0][i][0]); // longitude
+          vm.coordinates.geo_coord.push(coordenada.toString());
         }
-        console.log(coordinates_);
+        vm.enviarCoordenadas();
       });
+    },
+
+    enviarCoordenadas() {
+      this.coordinates.geo_coord = this.coordinates.geo_coord.toString();
+      this.$store.dispatch('sendCoordinates', this.coordinates);
     }
   }
 };
