@@ -1,17 +1,23 @@
 <template>
   <v-expansion-panels>
-    <v-expansion-panel v-for="(item,i) in 5" :key="i">
+    <v-expansion-panel v-for="(item,i) in 2" :key="i">
       <v-expansion-panel-header>Resultado</v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-col cols="12" sm="6" offset-sm="3">
           <v-card>
             <v-container fluid>
               <v-row>
-                <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
+                <v-col v-for="(links, index) in imgurLinks" :key="index" class="d-flex child-flex" cols="4">
                   <v-card flat tile class="d-flex">
-                    <v-img
+                    <!--<v-img
                       :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
                       :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+                      aspect-ratio="1"
+                      class="grey lighten-2"
+                    >-->
+                    <v-img
+                      :src="links"
+                      :lazy-src="links"
                       aspect-ratio="1"
                       class="grey lighten-2"
                     >
@@ -32,6 +38,17 @@
   </v-expansion-panels>
 </template>
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      imgurLinks:  [
+        "https://i.imgur.com/KLoDw18.png",
+        "https://i.imgur.com/rqT4Bmx.png",
+        "https://i.imgur.com/qpkWowI.jpg",
+        "https://i.imgur.com/Xq9UTpP.png",
+      ]
+    }
+  }
+};
 </script>
 <style lang="scss" scoped></style>
