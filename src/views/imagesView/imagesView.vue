@@ -1,33 +1,22 @@
 <template>
   <v-expansion-panels>
-    <v-expansion-panel v-for="(item,i) in 2" :key="i">
+    <v-expansion-panel v-for="(item, i) in 2" :key="i">
       <v-expansion-panel-header>Resultado</v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-col cols="12" sm="6" offset-sm="3">
           <v-card>
             <v-container fluid>
               <v-row>
-                <v-col v-for="(links, index) in imgurLinks" :key="index" class="d-flex child-flex" cols="4">
-                  <v-card flat tile class="d-flex">
-                    <!--<v-img
-                      :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-                      :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-                      aspect-ratio="1"
-                      class="grey lighten-2"
-                    >-->
-                    <v-img
-                      :src="links"
-                      :lazy-src="links"
-                      aspect-ratio="1"
-                      class="grey lighten-2"
-                    >
-                      <template v-slot:placeholder>
-                        <v-row class="fill-height ma-0" align="center" justify="center">
-                          <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                        </v-row>
-                      </template>
-                    </v-img>
-                  </v-card>
+                <v-col>
+                  <v-carousel>
+                    <v-carousel-item
+                      v-for="(item, i) in imgurLinks"
+                      :key="i"
+                      :src="item"
+                      reverse-transition="fade-transition"
+                      transition="fade-transition"
+                    ></v-carousel-item>
+                  </v-carousel>
                 </v-col>
               </v-row>
             </v-container>
@@ -39,15 +28,15 @@
 </template>
 <script>
 export default {
-  data(){
-    return{
-      imgurLinks:  [
+  data() {
+    return {
+      imgurLinks: [
         "https://i.imgur.com/KLoDw18.png",
         "https://i.imgur.com/rqT4Bmx.png",
         "https://i.imgur.com/qpkWowI.jpg",
-        "https://i.imgur.com/Xq9UTpP.png",
+        "https://i.imgur.com/Xq9UTpP.png"
       ]
-    }
+    };
   }
 };
 </script>
