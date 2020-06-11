@@ -7,7 +7,9 @@
           :map-options="{
             style: 'mapbox://styles/mapbox/satellite-v9',
             center: [-96, 37.8],
-            zoom: 3
+            zoom: 12,
+            minZoom: 12,
+            maxZoom: 14
           }"
           :geolocate-control="{
             show: true,
@@ -108,6 +110,6 @@ export default {
 <style>
 #map {
   width: 100%;
-  height: 800px;
+  height: 400px;
 }
 </style>
