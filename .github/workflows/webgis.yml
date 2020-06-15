@@ -27,7 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install Dependencies
       run: yarn
-    - run: yarn build --if-present
+    - run: yarn build
     - run: yarn serve
     - name: Deploy to Heroku
       uses: AkhileshNS/heroku-deploy@v3.0.5
