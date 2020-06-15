@@ -22,8 +22,8 @@ export default new Router({
           component: () => import("@/views/maps/MapBoxComponent")
         },
         {
-          name: "Catálogo de imagens",
-          path: "/catalogo-imagens",
+          name: "Armazenamento",
+          path: "/armazenamento",
           component: () => import("@/views/imagesView/imagesView")
         }
       ]

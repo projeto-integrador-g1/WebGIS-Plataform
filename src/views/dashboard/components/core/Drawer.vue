@@ -75,9 +75,9 @@ export default {
         to: "/mapa"
       },
       {
-        title: "Catalogo de imagens",
+        title: "Armazenamento",
         icon: "mdi-air-filter",
-        to: "/catalogo-imagens"
+        to: "/armazenamento"
       }
     ]
   }),

@@ -3,7 +3,7 @@ import axios from "axios";
 export const apiService = {
   async sendCoordinates(data) {
     const response = await axios({
-      url: "http://127.0.0.1:5000/api/geo/",
+      url: "http://127.0.0.1:4002/api/geo/",
       method: "POST",
       data: data
     });
