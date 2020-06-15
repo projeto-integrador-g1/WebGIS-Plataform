@@ -119,13 +119,13 @@
 
 <script>
   // Components
-  import { VHover, VListItem } from 'vuetify/lib'
+  import { VHover, VListItem } from "vuetify/lib"
 
   // Utilities
-  import { mapState, mapMutations } from 'vuex'
+  import { mapState, mapMutations } from "vuex"
 
   export default {
-    name: 'DashboardCoreAppBar',
+    name: "DashboardCoreAppBar",
 
     components: {
       AppBarItem: {
@@ -136,11 +136,11 @@
                 return h(VListItem, {
                   attrs: this.$attrs,
                   class: {
-                    'black--text': !hover,
-                    'white--text secondary elevation-12': hover,
+                    "black--text": !hover,
+                    "white--text secondary elevation-12": hover,
                   },
                   props: {
-                    activeClass: '',
+                    activeClass: "",
                     dark: hover,
                     link: true,
                     ...this.$attrs,
@@ -162,21 +162,21 @@
 
     data: () => ({
       notifications: [
-        'Mike John Responded to your email',
-        'You have 5 new tasks',
-        'You\'re now friends with Andrew',
-        'Another Notification',
-        'Another one',
+        "Mike John Responded to your email",
+        "You have 5 new tasks",
+        "You\'re now friends with Andrew",
+        "Another Notification",
+        "Another one",
       ],
     }),
 
     computed: {
-      ...mapState(['drawer']),
+      ...mapState(["drawer"]),
     },
 
     methods: {
       ...mapMutations({
-        setDrawer: 'SET_DRAWER',
+        setDrawer: "SET_DRAWER",
       }),
     },
   }
