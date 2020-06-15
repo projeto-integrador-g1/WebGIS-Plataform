@@ -29,5 +29,3 @@ jobs:
       run: yarn
     - run: yarn build
     - run: yarn serve
-    - name: Deploy to Heroku
-      uses: AkhileshNS/heroku-deploy@v3.0.5
