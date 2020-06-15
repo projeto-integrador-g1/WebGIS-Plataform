@@ -28,4 +28,3 @@ jobs:
     - name: Install Dependencies - Building project - Running
       run: yarn
     - run: yarn build
-    - run: yarn serve
