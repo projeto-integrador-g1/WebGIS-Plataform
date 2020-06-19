@@ -6,7 +6,11 @@
 
 <script>
     export default {
-        
+        computed:{
+            imagesCatalog(){
+                return this.$store.getters.catalog
+            } 
+        }
     }
 </script>
 
