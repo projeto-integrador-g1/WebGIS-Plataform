@@ -27,51 +27,7 @@
         />
       </v-card>
 
-      <v-row justify="center">
-        <v-dialog v-model="showDialog" scrollable max-width="800px">
-          <v-card>
-            <h1 class="font-weight-bold text-center">Parâmetros</h1>
-            <v-divider></v-divider>
-            <v-card-text style="height: 600px;">
-              <h2>
-                Satélite
-              </h2>
-              <v-radio-group v-model="satelite" row>
-                <v-radio class="font-weight-black" label="Sentinel" value="sentinel"></v-radio>
-                <v-radio class="font-weight-black" label="Landsat" value="landsat"></v-radio>
-                <v-radio class="font-weight-black" label="Ambos" value="ambos"></v-radio>
-              </v-radio-group>
-              <v-divider></v-divider>
-
-              <h2 class="mb-10">
-                Nível de cobertura de nuvem
-              </h2>
-              <v-slider v-model="slider" thumb-label="always"  prepend-icon="mdi-cloud"></v-slider>
-              <v-divider></v-divider>
-
-              <h2>
-                Período de data das imagens
-              </h2>
-              <v-container fluid>
-                <v-row>
-                  <v-col cols="6" >
-                    <v-date-picker v-model="date" range locale="pt-br" show-current></v-date-picker>
-                  </v-col>
-                  <v-col cols="6">
-                    <v-text-field v-model="dateRangeText" label="Período entre as datas" prepend-icon="mdi-event" readonly></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-            <v-divider></v-divider>
-            <v-card-actions>
-              <v-btn color="blue darken-1" text @click="closeSceneParameters">Cancelar</v-btn>
-              <v-btn color="blue darken-1" text @click="validateSceneParameters">Pesquisar</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-row>
-
+      <SceneParameters v-model="showSceneParameters" :coordinates="geo_coord"/>
 
       <v-row justify="center">
         <v-dialog v-model="showCataloImages" scrollable max-width="800px">
@@ -114,23 +70,15 @@
 
 <script>
 import Mapbox from "mapbox-gl-vue";
+import SceneParameters from "../../components/modal/SceneParameters.vue";
 
 export default {
-  components: { Mapbox},
+  components: { Mapbox, SceneParameters},
   data() {
     return {
-      sceneParameters: {
-        user_id: "5ecf7abcd91aa079f8b551f4",
-        geo_coord: [],
-        satelite: "",
-        date: [],
-        coberturaNuvem: 0,
-      },
-      date: [],
+      geo_coord: [],
       files: [],
-      satelite: '',
-      slider: null,
-      showDialog: false,
+      showSceneParameters: false,
       Draw: null,
       showCataloImages: false,
       imagemCatalogo: [],
@@ -251,8 +199,7 @@ export default {
 
       map.on("draw.create", function(e) {
         console.log("Novo Polígono");
-        vm.showDialog = true;
-        vm.cleanSceneParameters();
+
         vm.Draw.deleteAll();
         
         for (var i = 0; i < e.features[0].geometry.coordinates[0].length; i++) {
@@ -260,36 +207,14 @@ export default {
           var coordenada = [];
           coordenada.push(e.features[0].geometry.coordinates[0][i][1]); // latitude
           coordenada.push(e.features[0].geometry.coordinates[0][i][0]); // longitude
-          vm.sceneParameters.geo_coord.push(coordenada.toString());
+          vm.geo_coord.push(coordenada.toString());
         }
+
+        vm.showSceneParameters = true;
         // vm.enviarCoordenadas();
       });
     },
 
-    validateSceneParameters(){
-        if(!this.satelite || !this.date){
-          console.log('Nao Existe dado para satelite, data e nuvem');
-          console.log('Satelite: ' + this.satelite);
-          console.log('Data: ' + this.date);
-          console.log('Nuvem: ' + this.slider);
-
-          return
-        } else{
-          console.log('Existe dado para satelite, data e nuvem');
-          console.log('Satelite: ' + this.satelite);
-          console.log('Data: ' + this.date);
-          console.log('Nuvem: ' + this.slider);
-
-          this.sceneParameters.satelite = this.satelite;
-          this.sceneParameters.date = this.date;
-          this.sceneParameters.coberturaNuvem = this.slider;
-
-          this.showDialog = false;
-          this.showCataloImages = true;
-          console.log(this.sceneParameters);
-          //this.enviarCoordenadas();
-        }
-    },
 
     validadeCatalogoImages(){
       if(!this.imagemCatalogo){
@@ -301,37 +226,18 @@ export default {
       console.log('Catalogo de imagens escolhido: ' + this.imagemCatalogo);
     },
 
-    closeSceneParameters(){
-      this.cleanSceneParameters();
-      this.showDialog = false;
-    },
 
     closeCatalogoImages(){
       this.showCataloImages = false;
       this.showDialog = true;
     },
 
-    cleanSceneParameters(){
-      this.date = [];
-      this.satelite = '';
-      this.slider = null;
-    },
-
-    enviarCoordenadas() {
-      this.sceneParameters.geo_coord = this.sceneParameters.geo_coord.toString();
-      this.$store.dispatch("sendCoordinates", this.sceneParameters);
-    }
   },
 
-  computed: {
-      dateRangeText () {
-        return this.date.join(' ~ ')
-      },
-    },
 };
 </script>
 
-<style>
+<style scoped>
 #map {
   width: 100%;
   height: 600px;
