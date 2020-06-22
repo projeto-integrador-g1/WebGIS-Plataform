@@ -44,12 +44,17 @@
           </v-card>
         </v-dialog>
       </v-row>
+
+      <ImagesCatalog v-model="showImagesCatalog"/>
     </div>
 </template>
 
 <script>
+    import ImagesCatalog from "../../components/modal/ImagesCatalog.vue";
+
     export default {
         name: 'SceneParameters',
+        components: { ImagesCatalog},
         props: {
             value: {
                 type: Boolean
@@ -61,6 +66,7 @@
 
         data(){
             return {
+                showImagesCatalog: false,
                 parameters:{
                     date: [],
                     satelite: '',
@@ -113,6 +119,7 @@
 
                     console.log(this.parameters);
                     this.sendCoordinates();
+                    this.showImagesCatalog = true;
                 }
             },
 
