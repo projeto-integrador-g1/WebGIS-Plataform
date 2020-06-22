@@ -20,12 +20,12 @@ export default new Vuex.Store({
     },
     SET_CATALOG (state, payload) {
       state.catalog = payload
-    }
+    },
   },
   actions: {
     async sendCoordinates({ commit }, payload) {
       const imagesCatalog = await apiService.sendCoordinates(payload);
-      commit(SET_CATALOG, imagesCatalog);
+      commit('SET_CATALOG', imagesCatalog);
     }
   },
 
