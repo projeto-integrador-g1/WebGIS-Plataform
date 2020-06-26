@@ -5,11 +5,14 @@
           <v-card height="100%" >
             <h1 class="font-weight-bold text-center">Catálogo de Imagens</h1>
             <v-divider></v-divider>
-            <v-row v-show="Object.keys(imagesCatalog).length == 0" align="center" justify="center">
-              <v-progress-circular
-                indeterminate
-                color="primary"
-              ></v-progress-circular>
+            <v-row v-show="Object.keys(imagesCatalog).length == 0" justify="center" style="height: 600px;">
+               <div class="text-md-center ma-12" style="padding-top:200px;">
+                    <v-progress-circular  
+                    indeterminate
+                    color="primary"
+                    size="60" 
+                    ></v-progress-circular>
+                </div>
             </v-row>
             <v-row v-show="Object.keys(imagesCatalog).length > 0">
               <v-col  v-for="(image, index) in imagesCatalog" :key="index" cols="6" sm="4">
