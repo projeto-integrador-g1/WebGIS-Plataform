@@ -1,26 +1,31 @@
 <template>
   <v-app>
-    <dashboard-core-app-bar />
+    <dashboard-core-app-bar v-if="!isLogin" />
 
-    <dashboard-core-drawer />
+    <dashboard-core-drawer v-if="!isLogin" />
 
     <dashboard-core-view />
-
   </v-app>
 </template>
 
 <script>
-  export default {
-    name: "DashboardIndex",
+export default {
+  name: "DashboardIndex",
 
-    components: {
-      DashboardCoreAppBar: () => import("./components/core/AppBar"),
-      DashboardCoreDrawer: () => import("./components/core/Drawer"),
-      DashboardCoreView: () => import("./components/core/View"),
-    },
+  components: {
+    DashboardCoreAppBar: () => import("./components/core/AppBar"),
+    DashboardCoreDrawer: () => import("./components/core/Drawer"),
+    DashboardCoreView: () => import("./components/core/View")
+  },
 
-    data: () => ({
-      expandOnHover: false,
-    }),
+  data: () => ({
+    expandOnHover: false
+  }),
+
+  computed: {
+    isLogin() {
+      return this.$store.getters.hasLogin;
+    }
   }
+};
 </script>
