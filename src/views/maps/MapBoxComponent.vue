@@ -7,13 +7,9 @@
           :map-options="{
             style: 'mapbox://styles/mapbox/satellite-v9',
             center: [-96, 37.8],
-            zoom: 12,
-            minZoom: 12,
+            zoom: 3,
+            minZoom: 3,
             maxZoom: 14
-          }"
-          :geolocate-control="{
-            show: true,
-            position: 'top-left'
           }"
           :scale-control="{
             show: true,
@@ -35,6 +31,8 @@
 <script>
 import Mapbox from "mapbox-gl-vue";
 import SceneParameters from "../../components/modal/SceneParameters.vue";
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 export default {
   components: { Mapbox, SceneParameters},
@@ -59,6 +57,45 @@ export default {
       });
       map.addControl(this.Draw);
 
+      var coordinatesGeocoder = function(query) {
+        // match anything which looks like a decimal degrees coordinate pair
+        var matches = query.match(/^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i);
+        if (!matches) {
+          return null;
+        }
+        var coord1 = Number(matches[1]);
+        var coord2 = Number(matches[2]);
+        var geocodes = [];
+        
+        if (coord1 < -90 || coord1 > 90) {
+          // must be lng, lat
+          geocodes.push(vm.coordinateFeature(coord1, coord2));
+        }
+        
+        if (coord2 < -90 || coord2 > 90) {
+          // must be lat, lng
+          geocodes.push(vm.coordinateFeature(coord2, coord1));
+        }
+        
+        if (geocodes.length === 0) {
+          // else could be either lng, lat or lat, lng
+          geocodes.push(vm.coordinateFeature(coord1, coord2));
+          geocodes.push(vm.coordinateFeature(coord2, coord1));
+        }
+        
+        return geocodes;
+      }
+      const geocoder = new MapboxGeocoder({
+          accessToken: "pk.eyJ1IjoibHVjaWFuby1zY3J1bSIsImEiOiJjazdkOGJ6YTQxY3Z4M2Vxcmd4NTBhNjBmIn0.vRDaTxND4t-C_b5XB4JLmA",
+          mapboxgl: Mapbox,
+          countries: 'br',
+          marker: false,
+          localGeocoder: coordinatesGeocoder,
+          placeholder: 'Procurar...'
+      });
+
+      map.addControl(geocoder, 'top-left');
+
       map.on("draw.create", function(e) {
         console.log("Novo Polígono");
 
@@ -76,6 +113,20 @@ export default {
         // vm.enviarCoordenadas();
       });
     },
+
+    coordinateFeature(lng, lat){
+      return {
+        center: [lng, lat],
+        geometry: {
+          type: 'Point',
+          coordinates: [lng, lat]
+        },
+        place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+        place_type: ['coordinate'],
+        properties: {},
+        type: 'Feature'
+      };
+    }
   },
 
 };
