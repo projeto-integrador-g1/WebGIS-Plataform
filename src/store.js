@@ -32,6 +32,11 @@ export default new Vuex.Store({
       const imagesCatalog = await apiService.sendCoordinates(payload);
       commit("SET_CATALOG", imagesCatalog);
     },
+
+    async sendImagesCatalog({ commit }, payload){
+      const data = await apiService.sendImagesCatalog(payload);
+    },
+
     setLogin({ commit }) {
       commit("SET_LOGIN");
     }
