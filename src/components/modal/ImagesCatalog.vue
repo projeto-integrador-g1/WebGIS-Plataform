@@ -59,6 +59,9 @@
         data(){
             return{
                 selectedImagesCatalog: [],
+                catalog: {
+                  images: []
+                }
             }
         },
 
@@ -88,11 +91,30 @@
                 }
 
                 console.log('Catalogo de imagens escolhido: ' + this.selectedImagesCatalog);
+                this.catalog.images = [];
+                this.catalog.images = this.selectedImagesCatalog;
+                console.log(this.catalog.images, 'catalogo de images escolhido');
+                this.sendImagesCatalog();
             },
 
             closeImagesCatalog(){
                 this.showImagesCatalog = false;
+                if(this.imagesCatalog){
+                  this.cleanImagesCatalog();
+                  console.log('dados do catalog', this.imagesCatalog);
+                } else {
+                  console.log('Nao existe dados no images catalog');
+                }
             },
+            
+            cleanImagesCatalog(){
+              this.$store.commit("SET_CATALOG", []);
+              this.catalog.images = [];
+            },
+
+            sendImagesCatalog(){
+              this.$store.dispatch("sendImagesCatalog", this.catalog);
+            }
         }
     }
 </script>
