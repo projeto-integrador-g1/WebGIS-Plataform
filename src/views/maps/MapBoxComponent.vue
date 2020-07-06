@@ -99,6 +99,8 @@ export default {
       map.on("draw.create", function(e) {
         console.log("Novo Polígono");
 
+        vm.geo_coord = [];
+
         vm.Draw.deleteAll();
         
         for (var i = 0; i < e.features[0].geometry.coordinates[0].length; i++) {
