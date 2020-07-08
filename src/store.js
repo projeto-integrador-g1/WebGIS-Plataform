@@ -27,7 +27,7 @@ export default new Vuex.Store({
     SET_LOGIN(state) {
       state.isLogin = !state.isLogin;
     },
-    SET_COORDINATES_SHAPEFILE(state){
+    SET_COORDINATES_SHAPEFILE(state, payload){
       state.coordinatesShapefile = payload;
     }
   },
@@ -50,7 +50,7 @@ export default new Vuex.Store({
 
     async sendShapeFile({commit}, payload){
       const shapeCoordinates = await apiService.sendShapeFile(payload);
-      commit("SET_COORDINATE_SHAPEFILE", shapeCoordinates);
+      commit("SET_COORDINATES_SHAPEFILE", shapeCoordinates);
     }
   },
 
