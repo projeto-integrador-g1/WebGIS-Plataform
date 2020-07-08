@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'DashboardCoreView',
-  }
+export default {
+  name: "DashboardCoreView"
+};
 </script>

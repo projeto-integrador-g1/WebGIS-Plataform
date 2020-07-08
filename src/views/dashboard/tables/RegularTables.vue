@@ -1,13 +1,6 @@
 <template>
-  <v-container
-    id="regular-tables"
-    fluid
-    tag="section"
-  >
-    <base-v-component
-      heading="Simple Tables"
-      link="components/simple-tables"
-    />
+  <v-container id="regular-tables" fluid tag="section">
+    <base-v-component heading="Simple Tables" link="components/simple-tables" />
 
     <base-material-card
       icon="mdi-clipboard-text"

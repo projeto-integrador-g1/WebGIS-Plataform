@@ -23,7 +23,7 @@
         />
       </v-card>
 
-      <SceneParameters v-model="showSceneParameters" :coordinates="geo_coord"/>
+      <SceneParameters v-model="showSceneParameters" :coordinates="geo_coord" />
     </v-container>
   </div>
 </template>
@@ -31,18 +31,18 @@
 <script>
 import Mapbox from "mapbox-gl-vue";
 import SceneParameters from "../../components/modal/SceneParameters.vue";
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 export default {
-  components: { Mapbox, SceneParameters},
+  components: { Mapbox, SceneParameters },
   data() {
     return {
       geo_coord: [],
       files: [],
       showSceneParameters: false,
-      Draw: null,
-    }
+      Draw: null
+    };
   },
   methods: {
     initialized(map) {
@@ -59,42 +59,45 @@ export default {
 
       var coordinatesGeocoder = function(query) {
         // match anything which looks like a decimal degrees coordinate pair
-        var matches = query.match(/^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i);
+        var matches = query.match(
+          /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+        );
         if (!matches) {
           return null;
         }
         var coord1 = Number(matches[1]);
         var coord2 = Number(matches[2]);
         var geocodes = [];
-        
+
         if (coord1 < -90 || coord1 > 90) {
           // must be lng, lat
           geocodes.push(vm.coordinateFeature(coord1, coord2));
         }
-        
+
         if (coord2 < -90 || coord2 > 90) {
           // must be lat, lng
           geocodes.push(vm.coordinateFeature(coord2, coord1));
         }
-        
+
         if (geocodes.length === 0) {
           // else could be either lng, lat or lat, lng
           geocodes.push(vm.coordinateFeature(coord1, coord2));
           geocodes.push(vm.coordinateFeature(coord2, coord1));
         }
-        
+
         return geocodes;
-      }
+      };
       const geocoder = new MapboxGeocoder({
-          accessToken: "pk.eyJ1IjoibHVjaWFuby1zY3J1bSIsImEiOiJjazdkOGJ6YTQxY3Z4M2Vxcmd4NTBhNjBmIn0.vRDaTxND4t-C_b5XB4JLmA",
-          mapboxgl: Mapbox,
-          countries: 'br',
-          marker: false,
-          localGeocoder: coordinatesGeocoder,
-          placeholder: 'Procurar...'
+        accessToken:
+          "pk.eyJ1IjoibHVjaWFuby1zY3J1bSIsImEiOiJjazdkOGJ6YTQxY3Z4M2Vxcmd4NTBhNjBmIn0.vRDaTxND4t-C_b5XB4JLmA",
+        mapboxgl: Mapbox,
+        countries: "br",
+        marker: false,
+        localGeocoder: coordinatesGeocoder,
+        placeholder: "Procurar..."
       });
 
-      map.addControl(geocoder, 'top-left');
+      map.addControl(geocoder, "top-left");
 
       map.on("draw.create", function(e) {
         console.log("Novo Polígono");
@@ -102,7 +105,7 @@ export default {
         vm.geo_coord = [];
 
         vm.Draw.deleteAll();
-        
+
         for (var i = 0; i < e.features[0].geometry.coordinates[0].length; i++) {
           // A ultima coordenada e igual a primeira.
           var coordenada = [];
@@ -116,21 +119,20 @@ export default {
       });
     },
 
-    coordinateFeature(lng, lat){
+    coordinateFeature(lng, lat) {
       return {
         center: [lng, lat],
         geometry: {
-          type: 'Point',
+          type: "Point",
           coordinates: [lng, lat]
         },
-        place_name: 'Lat: ' + lat + ' Lng: ' + lng,
-        place_type: ['coordinate'],
+        place_name: "Lat: " + lat + " Lng: " + lng,
+        place_type: ["coordinate"],
         properties: {},
-        type: 'Feature'
+        type: "Feature"
       };
     }
-  },
-
+  }
 };
 </script>
 

@@ -9,13 +9,13 @@
 </template>
 
 <script>
-  export default {
-    name: 'CoreView',
+export default {
+  name: "CoreView",
 
-    metaInfo () {
-      return {
-        title: 'Vue Material Dashboard by CreativeTim'
-      }
-    }
+  metaInfo() {
+    return {
+      title: "Vue Material Dashboard by CreativeTim"
+    };
   }
+};
 </script>
