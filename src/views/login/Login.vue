@@ -49,7 +49,7 @@ export default {
       this.$store
         .dispatch("authorizeUser", { email: this.email, senha: this.senha })
         .then(() =>
-          this.$store.dispatch
+          this.$store
             .dispatch("setLogin")
             .then(() => this.$router.push({ name: "Mapa" }))
         );
