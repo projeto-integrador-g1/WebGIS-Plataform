@@ -20,6 +20,7 @@ export const apiService = {
     console.log("Api IA ", response.data);
     return response.data;
   },
+
   async authorizeUser(data) {
     const response = await axios({
       url: "https://app-auth1.herokuapp.com/api/auth/login",
@@ -28,7 +29,17 @@ export const apiService = {
     });
 
     localStorage.setItem("token", response.data);
-  }
+  },
+
+  async sendShapeFile(data){
+    const response = await axios({
+      url: "http://127.0.0.1:4002/api/",
+      method: "POST",
+      data: data
+    });
+    console.log('Envio de ShapeFile ',response.data);
+    return response.data;
+  },
 };
 
 axios.interceptors.request.use(
