@@ -114,7 +114,7 @@
             },
 
             sendImagesCatalog(){
-              //this.$store.dispatch("sendImagesCatalog", this.catalog);
+              this.$store.dispatch("sendImagesCatalog", this.catalog);
             }
         }
     }
