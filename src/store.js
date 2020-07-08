@@ -11,7 +11,8 @@ export default new Vuex.Store({
       "https://demos.creative-tim.com/material-dashboard/assets/img/sidebar-1.jpg",
     drawer: null,
     catalog: {},
-    isLogin: true
+    isLogin: true,
+    coordinatesShapefile: []
   },
   mutations: {
     SET_BAR_IMAGE(state, payload) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     SET_LOGIN(state) {
       state.isLogin = !state.isLogin;
+    },
+    SET_COORDINATES_SHAPEFILE(state){
+      state.coordinatesShapefile = payload;
     }
   },
   actions: {
@@ -42,6 +46,11 @@ export default new Vuex.Store({
     },
     setLogin({ commit }) {
       commit("SET_LOGIN");
+    },
+
+    async sendShapeFile({commit}, payload){
+      const shapeCoordinates = await apiService.sendShapeFile(payload);
+      commit("SET_COORDINATE_SHAPEFILE", shapeCoordinates);
     }
   },
 
@@ -51,6 +60,9 @@ export default new Vuex.Store({
     },
     hasLogin: state => {
       return state.isLogin;
+    },
+    coordinatesShapefile: state =>{
+      return state.coordinatesShapefile;
     }
   }
 });
