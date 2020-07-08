@@ -9,30 +9,12 @@
             <br />
 
             <p class="card-description font-weight-light">
-              <v-text-field
-                v-model="email"
-                type="email"
-                label="Email"
-              ></v-text-field>
+              <v-text-field v-model="email" type="email" label="Email"></v-text-field>
             </p>
             <p class="card-description font-weight-light">
-              <v-text-field
-                v-model="password"
-                type="password"
-                label="Senha"
-              ></v-text-field>
+              <v-text-field v-model="senha" type="password" label="Senha"></v-text-field>
             </p>
-            <v-btn
-              color="success"
-              rounded
-              class="font-weight-light"
-              @click="login"
-            >
-              Login</v-btn
-            >
-            <v-btn color="success" rounded class="font-weight-light">
-              Esqueceu sua senha</v-btn
-            >
+            <v-btn color="success" rounded class="font-weight-light" @click="login">Login</v-btn>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -45,14 +27,18 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      senha: ""
     };
   },
   methods: {
     login() {
       this.$store
-        .dispatch("setLogin")
-        .then(() => this.$router.push({ name: "Mapa" }));
+        .dispatch("authorizeUser", { email: this.email, senha: this.senha })
+        .then(() =>
+          this.$store.dispatch
+            .dispatch("setLogin")
+            .then(() => this.$router.push({ name: "Mapa" }))
+        );
     }
   }
 };

@@ -33,10 +33,13 @@ export default new Vuex.Store({
       commit("SET_CATALOG", imagesCatalog);
     },
 
-    async sendImagesCatalog({ commit }, payload){
+    async sendImagesCatalog({ commit }, payload) {
       const data = await apiService.sendImagesCatalog(payload);
     },
 
+    async authorizeUser({ commit }, payload) {
+      await apiService.authorizeUser(payload);
+    },
     setLogin({ commit }) {
       commit("SET_LOGIN");
     }
