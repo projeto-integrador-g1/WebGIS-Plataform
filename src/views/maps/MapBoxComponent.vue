@@ -155,7 +155,7 @@ export default {
         }
 
         vm.showSceneParameters = true;
-        // vm.enviarCoordenadas();
+        vm.enviarCoordenadas();
       });
     },
 
