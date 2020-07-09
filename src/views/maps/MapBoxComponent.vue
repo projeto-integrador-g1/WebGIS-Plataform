@@ -61,7 +61,7 @@ export default {
         if(splitName[splitName.length - 1] === 'zip'){
           let formData = new FormData();
           formData.append('file', file);
-          sendShapeFileZip(formData);
+          this.sendShapeFileZip(formData);
           //let reader = new FileReader();
           //reader.readAsText(file, "UTF-8");
           // reader.onload =  evt => {
