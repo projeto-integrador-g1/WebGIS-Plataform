@@ -59,7 +59,7 @@ export default new Vuex.Store({
       return state.catalog;
     },
     hasLogin: state => {
-      return localStorage.getItem("token") ? false : true;
+      return state.hasLogin;
     },
     coordinatesShapefile: state => {
       return state.coordinatesShapefile;

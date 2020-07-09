@@ -35,7 +35,7 @@
     </v-layout>
     <v-snackbar v-model="showModal" color="error" :timeout="6000">
       Por favor, tente fazer o login novamente
-      <v-btn color="white" flat @click="showModal = false">
+      <v-btn color="white" text @click="showModal = false">
         FECHAR
       </v-btn>
     </v-snackbar>
