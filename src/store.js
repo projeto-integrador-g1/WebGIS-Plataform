@@ -48,8 +48,8 @@ export default new Vuex.Store({
       commit("SET_LOGIN");
     },
 
-    async sendShapeFile({ commit }, payload) {
-      const shapeCoordinates = await apiService.sendShapeFile(payload);
+    async sendShapeFileZIP({ commit }, payload) {
+      const shapeCoordinates = await apiService.sendShapeFileZIP(payload);
       commit("SET_COORDINATES_SHAPEFILE", shapeCoordinates);
     }
   },
