@@ -41,11 +41,12 @@ export const apiService = {
     return response.data;
   },
 
-  async sendShapeFile(data) {
+  async sendShapeFileZIP(data) {
     const response = await axios({
-      url: "http://127.0.0.1:4002/api/",
+      url: "http://127.0.0.1:4002/api/sendFile/",
       method: "POST",
-      data: data
+      data: data,
+      headers: {'Content-Type': 'multipart/form-data'},
     });
 
     return response.data;
