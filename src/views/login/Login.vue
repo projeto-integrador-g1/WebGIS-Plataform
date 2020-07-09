@@ -33,6 +33,12 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-snackbar v-model="showModal" color="error" :timeout="6000">
+      Por favor, tente fazer o login novamente
+      <v-btn color="white" flat @click="showModal = false">
+        FECHAR
+      </v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -41,18 +47,20 @@ export default {
   data() {
     return {
       email: "",
-      senha: ""
+      senha: "",
+      showModal: false
     };
   },
   methods: {
     login() {
+      if (!this.email || !this.senha) {
+        this.showModal = true;
+        return;
+      }
       this.$store
         .dispatch("authorizeUser", { email: this.email, senha: this.senha })
-        .then(() =>
-          this.$store
-            .dispatch("setLogin")
-            .then(() => this.$router.push({ name: "Mapa" }))
-        );
+        .then(() => this.$router.push({ name: "Mapa" }))
+        .catch(() => (this.showModal = true));
     }
   }
 };

@@ -21,7 +21,9 @@ export default {
   data: () => ({
     expandOnHover: false
   }),
-
+  created() {
+    console.log(this.$store.getters.hasLogin);
+  },
   computed: {
     isLogin() {
       return this.$store.getters.hasLogin;
