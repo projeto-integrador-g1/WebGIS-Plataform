@@ -23,23 +23,33 @@ export const apiService = {
 
   async authorizeUser(data) {
     const response = await axios({
+      url: "https://app-auth1.herokuapp.com/api/auth/authorize",
+      method: "POST",
+      data: data
+    });
+
+    localStorage.setItem("token", response.data.token);
+  },
+
+  async createUser(data) {
+    const response = await axios({
       url: "https://app-auth1.herokuapp.com/api/auth/login",
       method: "POST",
       data: data
     });
 
-    localStorage.setItem("token", response.data);
+    return response.data;
   },
 
-  async sendShapeFile(data){
+  async sendShapeFile(data) {
     const response = await axios({
       url: "http://127.0.0.1:4002/api/",
       method: "POST",
       data: data
     });
-    console.log('Envio de ShapeFile ',response.data);
+
     return response.data;
-  },
+  }
 };
 
 axios.interceptors.request.use(

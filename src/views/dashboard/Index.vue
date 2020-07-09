@@ -21,10 +21,9 @@ export default {
   data: () => ({
     expandOnHover: false
   }),
-
   computed: {
     isLogin() {
-      return this.$store.getters.hasLogin;
+      return localStorage.getItem("token") ? false : true;
     }
   }
 };
