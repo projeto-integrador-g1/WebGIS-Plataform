@@ -42,7 +42,6 @@ export default {
   data() {
     return {
       geo_coord: [],
-      file: null,
       showSceneParameters: false,
       showLoadingShapeFile: false,
       Draw: null,
@@ -59,20 +58,23 @@ export default {
       if(file.name){
         const splitName = file.name.split('.');
         console.log('spliname', splitName);
-        if(splitName[splitName.length - 1] === 'shp'){
-          let reader = new FileReader();
-          reader.readAsText(file, "UTF-8");
-          reader.onload =  evt => {
-            this.text = evt.target.result;
-            vm.file = this.text;
-            vm.showLoadingShapeFile = true;
-            console.log('shapefile', vm.file);
-            //vm.sendShapeFile();
+        if(splitName[splitName.length - 1] === 'zip'){
+          let formData = new FormData();
+          formData.append('file', file);
+          sendShapeFileZip(formData);
+          //let reader = new FileReader();
+          //reader.readAsText(file, "UTF-8");
+          // reader.onload =  evt => {
+          //   this.text = evt.target.result;
+          //   vm.file = this.text;
+          //   vm.showLoadingShapeFile = true;
+          //   console.log('shapefile', vm.file);
+          //   //vm.sendShapeFile();
 
-          }
-          reader.onerror = evt => {
-            console.error(evt);
-            }
+          // }
+          // reader.onerror = evt => {
+          //   console.error(evt);
+          //   }
         } else{
           console.log('nao e arquivo shapefile');
           return;
@@ -171,8 +173,8 @@ export default {
       };
     },
 
-    sendShapeFile(){
-      this.$store.dispatch("sendShapeFile", this.file);
+    sendShapeFileZip(data){
+      this.$store.dispatch("sendShapeFileZIP", data);
     }
   },
 
