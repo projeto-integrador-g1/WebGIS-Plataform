@@ -2,12 +2,11 @@
     <div>
         <v-row justify="center">
         <v-dialog v-model="showLoadingShapeFile" @click:outside='closeLoadingShapefile' scrollable max-width="800px">
-          <v-card v-show="coordinatesShapefile.length === 0">
-            <v-card-text style="height: 600px;">
-                <h1 class="font-weight-bold text-center">Carregando coordenadas do ShapeFile</h1>
+          <v-card height="100%">
+            <h1 class="font-weight-bold text-center">Carregando coordenadas do ShapeFile</h1>
             <v-divider></v-divider>
-            <v-row  justify="center" style="height: 600px;">
-               <div class="text-md-center ma-12" style="padding-top:200px;">
+            <v-row   justify="center" style="height: 600px;">
+               <div v-if="validateCoordinates" class="text-md-center ma-12" style="padding-top:200px;">
                     <v-progress-circular  
                     indeterminate
                     color="primary"
@@ -15,12 +14,11 @@
                     ></v-progress-circular>
                 </div>
             </v-row>
-            </v-card-text>
           </v-card>
         </v-dialog>
       </v-row>
 
-      <SceneParameters v-model="showSceneParameters" :coordinates="coordinatesShapefile"/>
+      <SceneParameters v-model="showSceneParameters" :coordinates="geo_coord"/>
     </div>
 </template>
 
@@ -40,6 +38,7 @@ export default {
   data() {
     return {
         showSceneParameters: false,
+        geo_coord: [],
     }
   },
 
@@ -58,16 +57,36 @@ export default {
         return this.$store.getters.coordinatesShapefile;
     },
 
-    hasCoordinates(){
-        if(this.coordinatesShapefile){
-            this.showSceneParameters = true;
-        }
-    }
+    validateCoordinates(){
+      if(Object.keys(this.coordinatesShapefile).length > 0){
+        this.geo_coord = [],
+        this.validateShapeParameters();
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
 
   methods: {
       closeLoadingShapefile(){
-          console.log('fechou loading shapefile');
+          this.$store.commit("SET_COORDINATES_SHAPEFILE", {});
+          this.geo_coord = [],
+          this.showLoadingShapeFile = false;
+      },
+
+      validateShapeParameters(){
+        if(Object.keys(this.coordinatesShapefile).length > 0){
+          for(var i = 0; i < this.coordinatesShapefile.geo_coord.length; i += 2){
+            let coordenada = []
+            coordenada.push(this.coordinatesShapefile.geo_coord[i]);
+            coordenada.push(this.coordinatesShapefile.geo_coord[i + 1]);
+            this.geo_coord.push(coordenada.toString());
+          }
+          console.log(this.geo_coord);
+          this.showLoadingShapeFile = false;
+          this.showSceneParameters = true;
+        }
       }
   }
 }
