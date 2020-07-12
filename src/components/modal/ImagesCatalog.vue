@@ -44,12 +44,17 @@
           </v-card>
         </v-dialog>
       </v-row>
+
+      <TalhoesResults v-model="showResultsTalhoes"/>
     </div>
 </template>
 
 <script>
+    import TalhoesResults from "../../components/modal/TalhoesResults.vue";
+
     export default {
         name: 'ImagesCatalog',
+        components: { TalhoesResults},
         props: {
             value: {
                 type: Boolean
@@ -61,7 +66,8 @@
                 selectedImagesCatalog: [],
                 catalog: {
                   images: []
-                }
+                },
+                showResultsTalhoes: false,
             }
         },
 
@@ -95,6 +101,7 @@
                 this.catalog.images = this.selectedImagesCatalog;
                 console.log(this.catalog.images, 'catalogo de images escolhido');
                 this.sendImagesCatalog();
+                this.showResultsTalhoes = true;
             },
 
             closeImagesCatalog(){
@@ -109,7 +116,7 @@
             },
             
             cleanImagesCatalog(){
-              this.$store.commit("SET_CATALOG", []);
+              this.$store.commit("SET_CATALOG", {});
               this.catalog.images = [];
             },
 
