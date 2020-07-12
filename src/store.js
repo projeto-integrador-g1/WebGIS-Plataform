@@ -56,12 +56,13 @@ export default new Vuex.Store({
     },
 
     async authorizeUser({ commit }, payload) {
-      commit("SET_USER_EMAIL", payload.email);
       const email = {"email": payload.email};
+      commit("SET_USER_EMAIL", email);
+      //const email = {"email": payload.email};
       await apiService.authorizeUser(payload);
       await apiService.sendUserEmail(email);
-      const user_talhoes = await apiService.getUserTalhoes(email);
-      commit("SET_USER_TALHOES", user_talhoes);
+      //const user_talhoes = await apiService.getUserTalhoes(email);
+      //commit("SET_USER_TALHOES", user_talhoes);
     },
     setLogin({ commit }) {
       commit("SET_LOGIN");
@@ -71,6 +72,11 @@ export default new Vuex.Store({
       const shapeCoordinates = await apiService.sendShapeFileZIP(payload);
       commit("SET_COORDINATES_SHAPEFILE", shapeCoordinates);
     },
+
+    async getTalhoes({ commit, state }){
+      const user_talhoes = await apiService.getUserTalhoes(state.user_email);
+      commit("SET_USER_TALHOES", user_talhoes);
+    }
   },
 
   getters: {
