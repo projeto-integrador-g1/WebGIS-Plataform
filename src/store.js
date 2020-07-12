@@ -33,13 +33,13 @@ export default new Vuex.Store({
     SET_COORDINATES_SHAPEFILE(state, payload) {
       state.coordinatesShapefile = payload;
     },
-    SET_RESULTS_TALHOES(state, payload){
+    SET_RESULTS_TALHOES(state, payload) {
       state.resulsTalhoes = payload;
     },
-    SET_USER_EMAIL(state, payload){
+    SET_USER_EMAIL(state, payload) {
       state.user_email = payload;
     },
-    SET_USER_TALHOES(state, payload){
+    SET_USER_TALHOES(state, payload) {
       state.user_talhoes = payload;
     }
   },
@@ -51,19 +51,20 @@ export default new Vuex.Store({
 
     async sendImagesCatalog({ commit }, payload) {
       const resulsTalhoes_ = await apiService.sendImagesCatalog(payload);
-      console.log('Imagens dos talhoes', resulsTalhoes_);
+      console.log("Imagens dos talhoes", resulsTalhoes_);
       commit("SET_RESULTS_TALHOES", resulsTalhoes_);
     },
 
     async authorizeUser({ commit }, payload) {
-      const email = {"email": payload.email};
+      const email = { email: payload.email };
       commit("SET_USER_EMAIL", email);
-      //const email = {"email": payload.email};
+
       await apiService.authorizeUser(payload);
       await apiService.sendUserEmail(email);
       //const user_talhoes = await apiService.getUserTalhoes(email);
       //commit("SET_USER_TALHOES", user_talhoes);
     },
+
     setLogin({ commit }) {
       commit("SET_LOGIN");
     },
@@ -73,7 +74,7 @@ export default new Vuex.Store({
       commit("SET_COORDINATES_SHAPEFILE", shapeCoordinates);
     },
 
-    async getTalhoes({ commit, state }){
+    async getTalhoes({ commit, state }) {
       const user_talhoes = await apiService.getUserTalhoes(state.user_email);
       commit("SET_USER_TALHOES", user_talhoes);
     }

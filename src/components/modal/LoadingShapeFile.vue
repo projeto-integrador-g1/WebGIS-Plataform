@@ -77,11 +77,11 @@ export default {
 
       validateShapeParameters(){
         if(Object.keys(this.coordinatesShapefile).length > 0){
-          for(var i = 0; i < this.coordinatesShapefile.geo_coord.length; i += 2){
-            let coordenada = []
-            coordenada.push(this.coordinatesShapefile.geo_coord[i]);
-            coordenada.push(this.coordinatesShapefile.geo_coord[i + 1]);
-            this.geo_coord.push(coordenada.toString());
+          for(var i = 0; i < this.coordinatesShapefile.geo_coord.length; i+=2){
+            let coordenada = [];
+            let test;
+            test = this.coordinatesShapefile.geo_coord[i+1] +  ',' + this.coordinatesShapefile.geo_coord[i];
+            this.geo_coord.push(test.toString());
           }
           console.log(this.geo_coord);
           this.showLoadingShapeFile = false;

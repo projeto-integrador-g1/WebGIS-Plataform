@@ -29,6 +29,19 @@ export const apiService = {
     });
 
     localStorage.setItem("token", response.data.token);
+    localStorage.setItem("isAdmin", response.data.sessao.isAdmin);
+  },
+
+  async getUsers(data) {
+    const { onlyAdmin, idClient } = data;
+    debugger;
+    const response = await axios({
+      url: `http://localhost:3000/api/auth/client/${idClient}`,
+      method: "GET",
+      params: onlyAdmin
+    });
+
+    return response.data;
   },
 
   async createUser(data) {
@@ -46,33 +59,33 @@ export const apiService = {
       url: "http://127.0.0.1:4002/api/sendFile/",
       method: "POST",
       data: data,
-      headers: {'Content-Type': 'multipart/form-data'},
+      headers: { "Content-Type": "multipart/form-data" }
     });
 
     return response.data;
   },
 
-  async getUserTalhoes(data){
-    const url = "http://127.0.0.1:4002/api/users/results/"
+  async getUserTalhoes(data) {
+    const url = "http://127.0.0.1:4002/api/users/results/";
     const response = await axios({
-      url ,
+      url,
       method: "GET"
     });
 
     return response.data;
   },
 
-  async sendUserEmail(data){
-    const url = "http://127.0.0.1:4002/api/users/results/"
+  async sendUserEmail(data) {
+    const url = "http://127.0.0.1:4002/api/users/results/";
     const response = await axios({
       url,
       method: "POST",
       data: data
     });
 
-    console.log('Email', response);
+    console.log("Email", response);
     return response.data;
-  },
+  }
 };
 
 axios.interceptors.request.use(

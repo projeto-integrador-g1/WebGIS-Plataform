@@ -18,10 +18,7 @@
     <v-list dense nav>
       <v-list-item>
         <v-list-item-avatar class="align-self-center" color="white" contain>
-          <v-img
-            src=""
-            max-height="30"
-          />
+          <v-img src max-height="30" />
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -35,12 +32,8 @@
     <v-list expand nav>
       <div />
 
-      <template v-for="(item, i) in computedItems">
-        <base-item-group v-if="item.children" :key="`group-${i}`" :item="item">
-          <!--  -->
-        </base-item-group>
-
-        <base-item v-else :key="`item-${i}`" :item="item" />
+      <template v-for="(item, i) in itemsArray">
+        <base-item v-if="!item.onlyAdmin" :key="`item-${i}`" :item="item" />
       </template>
 
       <div />
@@ -64,20 +57,23 @@ export default {
 
   data: () => ({
     items: [
-      // {
-      //   icon: "mdi-home",
-      //   title: "Home",
-      //   to: "/"
-      // },
+      {
+        icon: "mdi-home",
+        title: "Usuarios",
+        to: "/usuarios",
+        onlyAdmin: true
+      },
       {
         title: "Mapa",
         icon: "mdi-map-marker",
-        to: "/mapa"
+        to: "/mapa",
+        onlyAdmin: false
       },
       {
         title: "Armazenamento",
         icon: "mdi-air-filter",
-        to: "/armazenamento"
+        to: "/armazenamento",
+        onlyAdmin: false
       }
     ]
   }),
@@ -100,6 +96,18 @@ export default {
         avatar: false,
         title: "Web GIS"
       };
+    },
+    isAdmin() {
+      if (localStorage.getItem("isAdmin") === true) return true;
+      return false;
+    },
+    itemsArray() {
+      return this.items.map(item => {
+        return {
+          ...item,
+          onlyAdmin: this.isAdmin
+        };
+      });
     }
   },
 
