@@ -12,7 +12,8 @@ export default new Vuex.Store({
     drawer: null,
     catalog: {},
     isLogin: true,
-    coordinatesShapefile: {}
+    coordinatesShapefile: {},
+    resulsTalhoes: {}
   },
   mutations: {
     SET_BAR_IMAGE(state, payload) {
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     SET_COORDINATES_SHAPEFILE(state, payload) {
       state.coordinatesShapefile = payload;
+    },
+    SET_RESULTS_TALHOES(state, payload){
+      state.resulsTalhoes = payload;
     }
   },
   actions: {
@@ -38,7 +42,9 @@ export default new Vuex.Store({
     },
 
     async sendImagesCatalog({ commit }, payload) {
-      const data = await apiService.sendImagesCatalog(payload);
+      const resulsTalhoes_ = await apiService.sendImagesCatalog(payload);
+      console.log('Imagens dos talhoes', resulsTalhoes_);
+      commit("SET_RESULTS_TALHOES", resulsTalhoes_);
     },
 
     async authorizeUser({ commit }, payload) {
@@ -63,6 +69,9 @@ export default new Vuex.Store({
     },
     coordinatesShapefile: state => {
       return state.coordinatesShapefile;
+    },
+    resulsTalhoes: state => {
+      return state.resulsTalhoes;
     }
   }
 });
