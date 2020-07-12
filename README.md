@@ -49,10 +49,10 @@ or
 
 ## Authors
 
-- Bruno Ferro - @BuiuFerro
-- Fábio Rodrigues - @fabiordrig 
-- Leonardo Tamanhão - @Dhonrian 
-- Luciano Cabral - @luciano-sjc35 
-- Luís Belo - @Luis.Belo
-- Matheus Froes - @Matheus-FC 
+- Bruno Ferro - [BuiuFerro](https://github.com/BuiuFerro)
+- Fábio Rodrigues - [fabiordrig](https://github.com/fabiordrig)
+- Leonardo Tamanhão - [Dhonrian](https://github.com/Dhorian)
+- Luciano Cabral - [luciano-sjc35](https://github.com/luciano-sjc35)
+- Luís Belo - [Luis.Belo](https://github.com/Luis.Belo)
+- Matheus Froes - [Matheus-FC](https://github.com/Matheus-FC)
 
