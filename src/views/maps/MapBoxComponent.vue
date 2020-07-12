@@ -61,6 +61,7 @@ export default {
         if(splitName[splitName.length - 1] === 'zip'){
           let formData = new FormData();
           formData.append('file', file);
+          this.showLoadingShapeFile = true;
           this.sendShapeFileZip(formData);
           //let reader = new FileReader();
           //reader.readAsText(file, "UTF-8");
@@ -155,7 +156,7 @@ export default {
         }
 
         vm.showSceneParameters = true;
-        vm.enviarCoordenadas();
+        //vm.enviarCoordenadas();
       });
     },
 
