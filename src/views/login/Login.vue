@@ -59,7 +59,9 @@ export default {
       }
       this.$store
         .dispatch("authorizeUser", { email: this.email, senha: this.senha, idClient: 1})
-        .then(() => this.$router.push({ name: "Mapa" }))
+        .then(() => 
+          this.$router.push({ name: "Mapa" })
+        )
         .catch(() => (this.showModal = true));
     }
   }
