@@ -12,7 +12,7 @@ export default new Vuex.Store({
     drawer: null,
     catalog: {},
     isLogin: true,
-    coordinatesShapefile: []
+    coordinatesShapefile: {}
   },
   mutations: {
     SET_BAR_IMAGE(state, payload) {
