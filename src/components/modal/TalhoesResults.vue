@@ -15,16 +15,16 @@
                 </div>
             </v-row>
             <v-row v-show="Object.keys(imagesResultsTalhoes).length > 0">
-              <v-col  v-for="(image, index) in imagesResultsTalhoes" :key="index" cols="12" sm="6" offset-sm="3">
+              <v-col  v-for="(image, index) in imagesResultsTalhoes.links" :key="index" cols="12" sm="6" offset-sm="3">
                 <v-card>
                   <v-img
-                    :src="image.links"
-                    :lazy-src="image.links"
+                    :src="image"
+                    :lazy-src="image"
                     aspect-ratio="1"
                     class="grey lighten-2"
                   ></v-img>
                   <v-card-text class="text--primary">
-                    <div> <a target="_blank" :href="image.links" >Link</a></div>
+                    <div> <a target="_blank" :href="image" >Link</a></div>
                   </v-card-text>
                 </v-card>
               </v-col>
