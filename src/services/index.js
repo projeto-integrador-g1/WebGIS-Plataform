@@ -50,7 +50,27 @@ export const apiService = {
     });
 
     return response.data;
-  }
+  },
+
+  async getUserTalhoes(data){
+    const response = await axios({
+      url: "http://127.0.0.1:4002/api/users/" + data,
+      method: "GET",
+    });
+
+    return response.data;
+  },
+
+  async sendUserEmail(data){
+    const response = await axios({
+      url: "http://127.0.0.1:4002/api/users/",
+      method: "POST",
+      data: data
+    });
+
+    console.log('Email', response);
+    return response.data;
+  },
 };
 
 axios.interceptors.request.use(
