@@ -64,11 +64,11 @@ export default {
 
   data: () => ({
     items: [
-      {
-        icon: "mdi-home",
-        title: "Home",
-        to: "/"
-      },
+      // {
+      //   icon: "mdi-home",
+      //   title: "Home",
+      //   to: "/"
+      // },
       {
         title: "Mapa",
         icon: "mdi-map-marker",
