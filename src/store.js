@@ -13,7 +13,9 @@ export default new Vuex.Store({
     catalog: {},
     isLogin: true,
     coordinatesShapefile: {},
-    resulsTalhoes: {}
+    resulsTalhoes: {},
+    user_email: null,
+    user_talhoes: {}
   },
   mutations: {
     SET_BAR_IMAGE(state, payload) {
@@ -33,6 +35,12 @@ export default new Vuex.Store({
     },
     SET_RESULTS_TALHOES(state, payload){
       state.resulsTalhoes = payload;
+    },
+    SET_USER_EMAIL(state, payload){
+      state.user_email = payload;
+    },
+    SET_USER_TALHOES(state, payload){
+      state.user_talhoes = payload;
     }
   },
   actions: {
@@ -48,7 +56,11 @@ export default new Vuex.Store({
     },
 
     async authorizeUser({ commit }, payload) {
+      commit("SET_USER_EMAIL", payload.email);
       await apiService.authorizeUser(payload);
+      await apiService.sendUserEmail(payload.email);
+      const user_talhoes = await apiService.getUserTalhoes(payload.email);
+      commit("SET_USER_TALHOES", user_talhoes);
     },
     setLogin({ commit }) {
       commit("SET_LOGIN");
@@ -57,7 +69,7 @@ export default new Vuex.Store({
     async sendShapeFileZIP({ commit }, payload) {
       const shapeCoordinates = await apiService.sendShapeFileZIP(payload);
       commit("SET_COORDINATES_SHAPEFILE", shapeCoordinates);
-    }
+    },
   },
 
   getters: {
@@ -72,6 +84,12 @@ export default new Vuex.Store({
     },
     resulsTalhoes: state => {
       return state.resulsTalhoes;
+    },
+    userEmail: state => {
+      return state.user_email;
+    },
+    userTalhoes: state => {
+      return state.user_talhoes;
     }
   }
 });
