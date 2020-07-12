@@ -43,6 +43,10 @@ export default {
     };
   },
 
+  created() {
+    this.$store.dispatch("getTalhoes");
+  },
+  
   computed:{
     imagesUserTalhoes(){
       return this.$store.getters.userTalhoes
@@ -61,7 +65,9 @@ export default {
   methods:{
     splitImages(){
       const splitLink = this.imagesUserTalhoes.user_imgs.split(';');
+      splitLink.pop();
       this.imgurLinks = splitLink;
+
       console.log('links de resposta', this.imgurLinks);
     }
   }
