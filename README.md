@@ -51,7 +51,7 @@ or
 
 - Bruno Ferro - [BuiuFerro](https://github.com/BuiuFerro)
 - Fábio Rodrigues - [fabiordrig](https://github.com/fabiordrig)
-- Leonardo Tamanhão - [Dhonrian](https://github.com/Dhorian)
+- Leonardo Tamanhão - [Dhonrian](https://github.com/Dhonrian)
 - Luciano Cabral - [luciano-sjc35](https://github.com/lucianosjc)
 - Luís Belo - [Luis.Belo](https://github.com/Luzaidin)
 - Matheus Froes - [Matheus-FC](https://github.com/Matheus-FC)
