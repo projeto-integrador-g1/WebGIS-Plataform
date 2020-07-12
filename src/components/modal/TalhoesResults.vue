@@ -15,7 +15,7 @@
                 </div>
             </v-row>
             <v-row v-show="Object.keys(imagesResultsTalhoes).length > 0">
-              <v-col  v-for="(image, index) in imagesCatalog" :key="index" cols="12" sm="6" offset-sm="3">
+              <v-col  v-for="(image, index) in imagesResultsTalhoes" :key="index" cols="12" sm="6" offset-sm="3">
                 <v-card>
                   <v-img
                     :src="image.links"
