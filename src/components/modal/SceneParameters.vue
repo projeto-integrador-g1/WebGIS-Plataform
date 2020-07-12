@@ -140,6 +140,7 @@
                 this.date = [];
                 this.satelite = '';
                 this.cloudCouverage = null;
+                this.parameters.geo_coord = [];
             },
         }
     }
