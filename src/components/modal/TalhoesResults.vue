@@ -24,7 +24,7 @@
                     class="grey lighten-2"
                   ></v-img>
                   <v-card-text class="text--primary">
-                    <div> <a target="_blank" :href="image.links" >Link<a></div>
+                    <div> <a target="_blank" :href="image.links" >Link</a></div>
                   </v-card-text>
                 </v-card>
               </v-col>
