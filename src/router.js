@@ -9,7 +9,7 @@ export default new Router({
   routes: [
     {
       path: "/",
-      redirect: "/login",
+      redirect: {name: "Login"},
       component: () => import("@/views/dashboard/Index"),
       children: [
         {
@@ -17,11 +17,11 @@ export default new Router({
           path: "/login",
           component: () => import("@/views/login/Login")
         },
-        {
-          name: "Projeto Integrador",
-          path: "",
-          component: () => import("@/views/dashboard/Dashboard")
-        },
+        // {
+        //   name: "Projeto Integrador",
+        //   path: "",
+        //   component: () => import("@/views/dashboard/Dashboard")
+        // },
         {
           name: "Mapa",
           path: "/mapa",
