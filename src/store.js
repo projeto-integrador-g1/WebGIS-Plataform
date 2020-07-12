@@ -57,9 +57,10 @@ export default new Vuex.Store({
 
     async authorizeUser({ commit }, payload) {
       commit("SET_USER_EMAIL", payload.email);
+      const email = {"email": payload.email};
       await apiService.authorizeUser(payload);
-      await apiService.sendUserEmail(payload.email);
-      const user_talhoes = await apiService.getUserTalhoes(payload.email);
+      await apiService.sendUserEmail(email);
+      const user_talhoes = await apiService.getUserTalhoes(email);
       commit("SET_USER_TALHOES", user_talhoes);
     },
     setLogin({ commit }) {

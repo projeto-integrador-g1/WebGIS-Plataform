@@ -19,7 +19,7 @@
       <v-list-item>
         <v-list-item-avatar class="align-self-center" color="white" contain>
           <v-img
-            src="https://media-exp1.licdn.com/dms/image/C560BAQEvWg3rCJNK8w/company-logo_200_200/0?e=2159024400&v=beta&t=iUaczIUx5iKmmXUghyiPiM002qUzlpQXebLqxvgqzO0"
+            src=""
             max-height="30"
           />
         </v-list-item-avatar>
@@ -97,8 +97,8 @@ export default {
     },
     profile() {
       return {
-        avatar: true,
-        title: "Visiona"
+        avatar: false,
+        title: "Web GIS"
       };
     }
   },

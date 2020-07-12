@@ -53,17 +53,19 @@ export const apiService = {
   },
 
   async getUserTalhoes(data){
+    const url = "http://127.0.0.1:4002/api/users/results/"
     const response = await axios({
-      url: "http://127.0.0.1:4002/api/users/" + data,
-      method: "GET",
+      url ,
+      method: "GET"
     });
 
     return response.data;
   },
 
   async sendUserEmail(data){
+    const url = "http://127.0.0.1:4002/api/users/results/"
     const response = await axios({
-      url: "http://127.0.0.1:4002/api/users/",
+      url,
       method: "POST",
       data: data
     });
